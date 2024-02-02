@@ -4,6 +4,7 @@ tasks:
   default:
     deps:
       - install-mac
+      - install-linux
 
   install-mac:
     platforms:
@@ -14,7 +15,14 @@ tasks:
       NONINTERACTIVE: 1
     cmds:
       - cmd: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-
-# TODO install linuxbrew
+  install-linux:
+    platforms:
+      - linux
+    status:
+      - test -d /home/linuxbrew/.linuxbrew/bin
+    env:
+      NONINTERACTIVE: 1
+    cmds:
+      - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
